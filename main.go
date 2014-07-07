@@ -37,14 +37,14 @@ type ProtocolStruct struct {
 
 const templ = `
 
-#START do-go-ssh{{range .}}
+#START dossh{{range .}}
 Host {{.Hostname}}
 	Hostname {{.IP}}
 	Port 22
 	User root
 	IdentitiesOnly yes
 {{end}}
-#END do-go-ssh
+#END dossh
 `
 
 // getServers connects to DO API and fetches droplet list.
@@ -115,8 +115,8 @@ func templateFrom(servers []Server) []byte {
 
 	config := string(file)
 
-	e := strings.Split(config, "#START do-go-ssh")
-	h := strings.Split(config, "#END do-go-ssh")
+	e := strings.Split(config, "#START dossh")
+	h := strings.Split(config, "#END dossh")
 
 	newconfig := e[0] + h[1]
 
