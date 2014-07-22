@@ -3,12 +3,12 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"os"
 	"os/user"
 	"strings"
-	"fmt"
 	"text/template"
 )
 
@@ -88,8 +88,8 @@ func parseServers(body []byte) []Server {
 	return servers
 }
 
-// templateFrom creates a new text template from given []Server struct. It also fetches the old .ssh/config file 
-// and parses it so that the old do-go-ssh values are removed. It then inserts the new values to the old file template 
+// templateFrom creates a new text template from given []Server struct. It also fetches the old .ssh/config file
+// and parses it so that the old do-go-ssh values are removed. It then inserts the new values to the old file template
 // and finally returns the completed byte array.
 func templateFrom(servers []Server) []byte {
 	t, err := template.New("config").Parse(templ)
