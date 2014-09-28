@@ -89,7 +89,7 @@ func parseServers(body []byte) []Server {
 }
 
 // templateFrom creates a new text template from given []Server struct. It also fetches the old .ssh/config file
-// and parses it so that the old do-go-ssh values are removed. It then inserts the new values to the old file template
+// and parses it so that the old dossh values are removed. It then inserts the new values to the old file template
 // and finally returns the completed byte array.
 func templateFrom(servers []Server) []byte {
 	t, err := template.New("config").Parse(templ)
