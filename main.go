@@ -113,6 +113,12 @@ func templateFrom(servers []Server) []byte {
 		panic(err)
 	}
 
+	firstRun := strings.Contains(string(file), "#START dossh")
+
+	if !firstRun {
+		return []byte(strings.TrimSpace(string(file) + doc.String()))
+	}
+
 	config := string(file)
 
 	e := strings.Split(config, "#START dossh")
